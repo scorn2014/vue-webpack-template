@@ -1,3 +1,8 @@
-console.log('hello webpack')
+import Vue from 'vue'
+import App from './App.vue'
+import router from './router'
 
-const fn = () => 1;
+new Vue({
+  router,
+  render: h => h(App)
+}).$mount('#app')

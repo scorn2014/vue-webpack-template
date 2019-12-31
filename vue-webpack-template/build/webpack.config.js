@@ -1,15 +1,24 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const webpack = require('webpack');
+const VueLoaderPlugin = require('vue-loader/lib/plugin')
 
 module.exports = {
-  mode: 'production',
-  entry: '../src/main.js',
+  entry: {
+    // 配置入口文件
+    main: path.resolve(__dirname, '../src/main.js')
+  },
   output: {
     path: path.resolve(__dirname, '../dist'),
     filename: 'js/[name].[hash:8].js',
     chunkFilename: 'js/[name].[hash:8].js',
     publicPath: './'
+  },
+  resolve: {
+    extensions: [
+      '.js',
+      '.vue'
+    ]
   },
   module: {
     rules: [{
@@ -60,6 +69,10 @@ module.exports = {
             }
           }
         ]
+      },
+      {
+        test: /\.vue$/,
+        loader: 'vue-loader'
       }
     ]
   },
@@ -68,7 +81,8 @@ module.exports = {
       template: path.resolve(__dirname, '../public/index.html')
     }),
     new webpack.NamedModulesPlugin(),
-    new webpack.HotModuleReplacementPlugin()
+    new webpack.HotModuleReplacementPlugin(),
+    new VueLoaderPlugin() 
   ],
   devServer: {
     contentBase: './dist',

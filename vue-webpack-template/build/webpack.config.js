@@ -25,14 +25,7 @@ module.exports = {
         test: /\.js$/, //匹配
         exclude: /node_modules/, //排除
         use: {
-          loader: 'babel-loader',
-          options: {
-            presets: [
-              ['@babel/preset-env', {
-                useBuiltIns: "usage"
-              }]
-            ]
-          }
+          loader: 'babel-loader'
         }
       },
       {
@@ -82,11 +75,12 @@ module.exports = {
     }),
     new webpack.NamedModulesPlugin(),
     new webpack.HotModuleReplacementPlugin(),
-    new VueLoaderPlugin() 
+    new VueLoaderPlugin(),
   ],
   devServer: {
     contentBase: './dist',
     hot: true,
-    port: 3000
+    port: 3000,
+    open:true
   },
 };

@@ -3,10 +3,10 @@ const webpackConfig = require('./webpack.config')
 const webpack = require('webpack');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const OptimizeCssnanoPlugin = require('@intervolga/optimize-cssnano-plugin');
-const {CleanWebpackPlugin} = require('clean-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin')
 const path = require('path');
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
+const {CleanWebpackPlugin} = require('clean-webpack-plugin');
 
 module.exports = merge(webpackConfig,{
     mode: 'production',
@@ -27,11 +27,6 @@ module.exports = merge(webpackConfig,{
               to: path.resolve(__dirname, '../dist')
             }
           ]),
-          new CleanWebpackPlugin(),
-          new BundleAnalyzerPlugin(
-            {
-               analyzerMode: 'static'
-                 }
-        )  
+          new CleanWebpackPlugin()  
       ]
 })
